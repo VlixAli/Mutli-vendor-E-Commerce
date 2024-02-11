@@ -184,6 +184,10 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 </div>
                 <div class="info">
                     <a href="#" class="d-block">{{ Auth::user()->name }}</a>
+                    <form action="{{ route('logout') }}" method="post">
+                        @csrf
+                        <button type="submit" class="btn btn-sm btn-outline-primary">Logout</button>
+                    </form>
                 </div>
             </div>
             @endauth
