@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'name' => 'George Costanza' ,
             'email' => 'georgeCostanza@gmail.com' ,
             'password' => Hash::make('password'),
-            'phone_number' => '912881992',
+            'phone_number' => '912881993',
         ]);
     }
 }
