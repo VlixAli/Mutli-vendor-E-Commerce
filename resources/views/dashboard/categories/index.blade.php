@@ -33,10 +33,10 @@
                 <td>{{ $category->parent_id }}</td>
                 <td>{{ $category->created_at }}</td>
                 <td>
-                    <a href="{{ route('categories.edit') }}" class="btn btn-sm btn-outline-success">Edit</a>
+                    <a href="{{ route('categories.edit', $category->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
                 </td>
                 <td>
-                    <form action="{{ route('categories.destroy') }}" method="post">
+                    <form action="{{ route('categories.destroy', $category->id) }}" method="post">
                         @csrf
                         @method('delete')
                         <button type="submit" class="btn btn-sm btn-outline-danger">Delete</button>
