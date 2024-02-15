@@ -35,7 +35,10 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $category = Category::create($request->all());
+
+        return redirect()->route('categories.index');
+
     }
 
     /**
