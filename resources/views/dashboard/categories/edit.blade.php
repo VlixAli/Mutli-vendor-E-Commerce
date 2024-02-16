@@ -12,6 +12,8 @@
 
     <form action="{{ route('dashboard.categories.update', $category->id) }}" method="post">
         @csrf
+        @method('put')
+
         <div class="form-group">
             <label for="">Category Name</label>
             <input type="text" name="name" class="form-control" value="{{ $category->name }}">
