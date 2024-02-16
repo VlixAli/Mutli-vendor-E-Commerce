@@ -61,7 +61,10 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $category = Category::find($id);
+        return view('dashboard.categories.edit', [
+           'category' => $category
+        ]);
     }
 
     /**
