@@ -18,6 +18,11 @@
             {{session('success')}}
         </div>
     @endif
+    @if(session()->has('info'))
+        <div class="alert alert-info">
+            {{session('info')}}
+        </div>
+    @endif
 
     <table class="table">
         <thead>
@@ -39,7 +44,8 @@
                 <td>{{ $category->parent_id }}</td>
                 <td>{{ $category->created_at }}</td>
                 <td>
-                    <a href="{{ route('dashboard.categories.edit', $category->id) }}" class="btn btn-sm btn-outline-success">Edit</a>
+                    <a href="{{ route('dashboard.categories.edit', $category->id) }}"
+                       class="btn btn-sm btn-outline-success">Edit</a>
                 </td>
                 <td>
                     <form action="{{ route('dashboard.categories.destroy', $category->id) }}" method="post">

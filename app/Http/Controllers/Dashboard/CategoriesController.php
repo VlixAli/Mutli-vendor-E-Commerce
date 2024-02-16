@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
@@ -61,7 +62,12 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
-        $category = Category::findOrFail($id);
+        try {
+            $category = Category::findOrFail($id);
+        } catch (Exception $e) {
+            return redirect()->route('dashboard.categories.index')
+                ->with('info', 'Record not found!');
+        }
 
         $parents = Category::where('id', '<>', $id)->get();
         return view('dashboard.categories.edit', [
