@@ -27,8 +27,10 @@ class CategoriesController extends Controller
     public function create()
     {
         $parents = Category::all();
+        $category = new Category();
         return view('dashboard.categories.create', [
-            'parents' => $parents
+            'parents' => $parents ,
+            'category' => $category
         ]);
     }
 
