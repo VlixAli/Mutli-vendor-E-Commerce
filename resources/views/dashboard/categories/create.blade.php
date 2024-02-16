@@ -9,7 +9,7 @@
 
 @section('content')
 
-    <form action="{{ route('categories.store') }}" method="post">
+    <form action="{{ route('dashboard.categories.store') }}" method="post">
         @csrf
         <div class="form-group">
             <label for="">Category Name</label>
