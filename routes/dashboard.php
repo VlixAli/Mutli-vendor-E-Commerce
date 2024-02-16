@@ -8,4 +8,5 @@ Route::get('/dashboard', [DashboardController::class, 'index'])
     ->middleware(['auth', 'verified'])
     ->name('dashboard');
 
-Route::resource('/dashboard/categories' , CategoriesController::class);
+Route::resource('/dashboard/categories', CategoriesController::class)
+    ->middleware('auth');
