@@ -69,7 +69,13 @@ class CategoriesController extends Controller
                 ->with('info', 'Record not found!');
         }
 
-        $parents = Category::where('id', '<>', $id)->get();
+        $parents = Category::where('id', '<>', $id)
+            ->where(fn($query) =>
+                $query->whereNull('parent_id')
+                    ->orWhere('parent_id', '<>', $id)
+            )
+            ->get();
+
         return view('dashboard.categories.edit', [
             'category' => $category,
             'parents' => $parents
