@@ -74,7 +74,11 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $category = Category::find($id);
+
+        $category->update($request->all());
+        return redirect()->route('dashboard.categories.index')
+            ->with('success', 'Category updated!');
     }
 
     /**
