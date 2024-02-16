@@ -6,12 +6,13 @@ use Illuminate\Support\Facades\Route;
 
 Route::group([
     'middleware' => 'auth',
-    'as' => 'dashboard.'
+    'as' => 'dashboard.' ,
+    'prefix' => 'dashboard'
 ], function () {
 
-    Route::get('/dashboard', [DashboardController::class, 'index'])
+    Route::get('/', [DashboardController::class, 'index'])
         ->name('dashboard');
 
-    Route::resource('/dashboard/categories', CategoriesController::class);
+    Route::resource('/categories', CategoriesController::class);
 });
 
