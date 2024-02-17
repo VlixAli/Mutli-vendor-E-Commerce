@@ -40,7 +40,10 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate(Category::rules());
+        $request->validate(Category::rules(), [
+            'name.required' => 'This field (:attribute) is required',
+            'name.unique' => 'this name already exists!'
+        ]);
 
         $request->merge([
             'slug' => Str::slug($request->post('name'))
@@ -97,11 +100,14 @@ class CategoriesController extends Controller
 
         $old_image = $category->image;
         $data = $request->except('image');
-        $data['image'] = $this->uploadImage($request);
+        $newImage = $this->uploadImage($request);
+        if($newImage){
+            $data['image'] = $newImage;
+        }
 
         $category->update($data);
 
-        if ($old_image && $data['image']) {
+        if ($old_image && $newImage) {
             Storage::disk('public')->delete($old_image);
         }
 
