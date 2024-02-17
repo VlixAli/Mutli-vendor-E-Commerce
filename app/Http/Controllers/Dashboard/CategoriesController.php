@@ -30,7 +30,7 @@ class CategoriesController extends Controller
         $parents = Category::all();
         $category = new Category();
         return view('dashboard.categories.create', [
-            'parents' => $parents ,
+            'parents' => $parents,
             'category' => $category
         ]);
     }
@@ -44,12 +44,7 @@ class CategoriesController extends Controller
             'slug' => Str::slug($request->post('name'))
         ]);
         $data = $request->except('image');
-
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $path = $file->store('uploads' , 'public');
-            $data['image'] = $path;
-        }
+        $data['image'] = $this->uploadImage($request);
 
         $category = Category::create($data);
 
@@ -79,9 +74,8 @@ class CategoriesController extends Controller
         }
 
         $parents = Category::where('id', '<>', $id)
-            ->where(fn($query) =>
-                $query->whereNull('parent_id')
-                    ->orWhere('parent_id', '<>', $id)
+            ->where(fn($query) => $query->whereNull('parent_id')
+                ->orWhere('parent_id', '<>', $id)
             )
             ->get();
 
@@ -100,15 +94,11 @@ class CategoriesController extends Controller
 
         $old_image = $category->image;
         $data = $request->except('image');
-        if($request->hasFile('image')){
-            $file = $request->file('image');
-            $path = $file->store('uploads' , 'public');
-            $data['image'] = $path;
-        }
+        $data['image'] = $this->uploadImage($request);
 
         $category->update($data);
 
-        if($old_image && isset($data['image'])){
+        if ($old_image && $data['image']) {
             Storage::disk('public')->delete($old_image);
         }
 
@@ -123,11 +113,21 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        if ($category->image){
+        if ($category->image) {
             Storage::disk('public')->delete($category->image);
         }
 
         return redirect()->route('dashboard.categories.index')
             ->with('success', 'Category deleted!');
     }
+
+    protected function uploadImage(Request $request)
+    {
+        if (!$request->hasFile('image')) {
+            return null;
+        }
+        $file = $request->file('image');
+        return $file->store('uploads', 'public');
+    }
 }
+
