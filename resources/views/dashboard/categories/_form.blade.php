@@ -11,7 +11,16 @@
 
 <div class="form-group">
     <label for="">Category Name</label>
-    <input type="text" name="name" class="form-control" value="{{ $category->name }}">
+    <input type="text" name="name" @class([
+    "form-control",
+    'is-invalid' =>$errors->has('name')
+])
+    value="{{ old('name', $category->name) }}">
+    @error('name')
+    <div class="invalid-feedback">
+        {{$message}}
+    </div>
+    @enderror
 </div>
 <div class="form-group">
     <label for="">Category Parent</label>
@@ -19,13 +28,13 @@
         <option value="">Primary Category</option>
         @foreach($parents as $parent)
             <option
-                value="{{ $parent->id }}" @selected($category->parent_id == $parent->id)>{{ $parent->name }}</option>
+                value="{{ $parent->id }}" @selected(old('parent_id',$category->parent_id) == $parent->id)>{{ $parent->name }}</option>
         @endforeach
     </select>
 </div>
 <div class="form-group">
     <label for="">Description</label>
-    <textarea name="description" class="form-control">{{ $category->description }}</textarea>
+    <textarea name="description" class="form-control">{{ old('description', $category->description) }}</textarea>
 </div>
 <div class="form-group">
     <label for="">Image</label>
@@ -39,14 +48,14 @@
     <div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="status"
-                   value="active" @checked($category->status == 'active')>
+                   value="active" @checked(old('status', $category->status) == 'active')>
             <label class="form-check-label">
                 Active
             </label>
         </div>
         <div class="form-check">
             <input class="form-check-input" type="radio" name="status"
-                   value="archived" @checked($category->status == 'archived')>
+                   value="archived" @checked(old('status', $category->status) == 'archived')>
             <label class="form-check-label">
                 Archived
             </label>
