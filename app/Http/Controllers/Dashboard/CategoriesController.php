@@ -42,9 +42,15 @@ class CategoriesController extends Controller
         $request->merge([
             'slug' => Str::slug($request->post('name'))
         ]);
+        $data = $request->except('image');
 
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = $file->store('uploads' , 'public');
+            $data['image'] = $path;
+        }
 
-        $category = Category::create($request->all());
+        $category = Category::create($data);
 
         return redirect()->route('dashboard.categories.index')
             ->with('success', 'Category created!');
