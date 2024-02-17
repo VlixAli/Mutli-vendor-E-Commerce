@@ -25,4 +25,11 @@ class CategoryRequest extends FormRequest
         $id = $this->route('category');
         return Category::rules($id);
     }
+
+    public function messages()
+    {
+        return [
+            'name.unique' => 'this name already exists!'
+        ];
+    }
 }
