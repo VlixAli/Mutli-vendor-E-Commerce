@@ -92,7 +92,7 @@ class CategoriesController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate(Category::rules());
+        $request->validate(Category::rules($id));
         $category = Category::findorFail($id);
 
         $old_image = $category->image;
