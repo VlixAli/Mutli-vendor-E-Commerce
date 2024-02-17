@@ -18,6 +18,9 @@
 <div class="form-group">
     <label for="">Image</label>
     <input type="file" name="image" class="form-control">
+    @if($category->image)
+        <img src="{{asset('storage/'.$category->image)}}" alt="" height="50">
+    @endif
 </div>
 <div class="form-group">
     <label for="">Status</label>
