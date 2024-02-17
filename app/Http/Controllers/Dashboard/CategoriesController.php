@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
 class CategoriesController extends Controller
@@ -97,7 +98,20 @@ class CategoriesController extends Controller
     {
         $category = Category::findorFail($id);
 
-        $category->update($request->all());
+        $old_image = $category->image;
+        $data = $request->except('image');
+        if($request->hasFile('image')){
+            $file = $request->file('image');
+            $path = $file->store('uploads' , 'public');
+            $data['image'] = $path;
+        }
+
+        $category->update($data);
+
+        if($old_image && isset($data['image'])){
+            Storage::disk('public')->delete($old_image);
+        }
+
         return redirect()->route('dashboard.categories.index')
             ->with('success', 'Category updated!');
     }
