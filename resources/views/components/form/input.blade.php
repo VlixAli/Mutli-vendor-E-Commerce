@@ -1,5 +1,9 @@
+@props([
+    'type' => 'text' , 'name' , 'value' => ''
+])
+
 <input
-    type="{{$type ?? 'text'}}"
+    type="{{$type}}"
     name="{{$name}}" @class([
             "form-control",
             'is-invalid' =>$errors->has($name)
