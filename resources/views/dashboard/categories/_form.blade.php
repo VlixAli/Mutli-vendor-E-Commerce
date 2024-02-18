@@ -10,8 +10,7 @@
 @endif
 
 <div class="form-group">
-    <label for="">Category Name</label>
-    <x-form.input name="name" :value="$category->name" />
+    <x-form.input label="Category Name" name="name" :value="$category->name" />
 </div>
 <div class="form-group">
     <label for="">Category Parent</label>
