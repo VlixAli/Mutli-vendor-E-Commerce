@@ -23,8 +23,7 @@
     </select>
 </div>
 <div class="form-group">
-    <label for="">Description</label>
-    <textarea name="description" class="form-control">{{ old('description', $category->description) }}</textarea>
+    <x-form.textarea label="Description" name="description" :value="old('description', $category->description)" />
 </div>
 <div class="form-group">
     <label for="">Image</label>
