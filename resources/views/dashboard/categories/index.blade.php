@@ -54,5 +54,5 @@
         @endforelse
         </tbody>
     </table>
-
+{{$categories->links()}}
 @endsection
