@@ -22,7 +22,7 @@
         <select name="status" class="form-control mx-2">
             <option value="">All</option>
             <option value="active">Active</option>
-            <option value="archived">Active</option>
+            <option value="archived">Archived</option>
         </select>
         <button class="btn btn-dark">Filter</button>
     </form>
