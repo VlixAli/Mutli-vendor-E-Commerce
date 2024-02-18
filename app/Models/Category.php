@@ -21,6 +21,11 @@ class Category extends Model
         'slug'
     ];
 
+    public function scopeActive(Builder $builder)
+    {
+        $builder->where('status', '=', 'active');
+    }
+
     public function scopeFilter(Builder $builder, $filters)
     {
         $builder->when($filters['name'] ?? false, fn($builder, $value) =>
