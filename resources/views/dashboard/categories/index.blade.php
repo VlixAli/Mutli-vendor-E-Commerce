@@ -23,6 +23,7 @@
             <th>ID</th>
             <th>Name</th>
             <th>Parent</th>
+            <th>Status</th>
             <th>Created At</th>
             <th colspan="2"></th>
         </tr>
@@ -34,6 +35,7 @@
                 <td>{{ $category->id }}</td>
                 <td>{{ $category->name }}</td>
                 <td>{{ $category->parent_id }}</td>
+                <td>{{ $category->status }}</td>
                 <td>{{ $category->created_at }}</td>
                 <td>
                     <a href="{{ route('dashboard.categories.edit', $category->id) }}"
