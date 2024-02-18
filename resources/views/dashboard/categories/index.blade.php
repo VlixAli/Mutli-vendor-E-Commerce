@@ -1,3 +1,4 @@
+@php use Illuminate\Support\Facades\URL; @endphp
 @extends('layouts.dashboard')
 
 @section('title', 'Categories')
@@ -15,6 +16,16 @@
 
     <x-alert type="success"/>
     <x-alert type="info"/>
+
+    <form action="{{ URL::current() }}" method="get" class="d-flex justify-content-between mb-4">
+        <x-form.input name="name" placeholder="Name" class="mx-2"/>
+        <select name="status" class="form-control mx-2">
+            <option value="">All</option>
+            <option value="active">Active</option>
+            <option value="archived">Active</option>
+        </select>
+        <button class="btn btn-dark">Filter</button>
+    </form>
 
     <table class="table">
         <thead>
@@ -56,5 +67,5 @@
         @endforelse
         </tbody>
     </table>
-{{$categories->links()}}
+    {{$categories->links()}}
 @endsection
