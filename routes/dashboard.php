@@ -18,7 +18,7 @@ Route::group([
         ->name('categories.trash');
     Route::put('categories/{category}/restore', [CategoriesController::class, 'restore'])
         ->name('categories.restore');
-     Route::put('categories/{category}/force-delete', [CategoriesController::class, 'forceDelete'])
+     Route::delete('categories/{category}/force-delete', [CategoriesController::class, 'forceDelete'])
         ->name('categories.force-delete');
 
     Route::resource('/categories', CategoriesController::class);
