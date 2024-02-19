@@ -29,10 +29,10 @@ class Category extends Model
     public function scopeFilter(Builder $builder, $filters)
     {
         $builder->when($filters['name'] ?? false, fn($builder, $value) =>
-            $builder->where('name', 'LIKE', "%{$value}%"));
+            $builder->where('categories.name', 'LIKE', "%{$value}%"));
 
         $builder->when($filters['status'] ?? false, fn($builder, $value) =>
-            $builder->where('status', '=', $value));
+            $builder->where('categories.status', '=', $value));
     }
 
     public static function rules($id = 0)
