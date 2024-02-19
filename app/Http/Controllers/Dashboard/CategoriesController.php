@@ -143,7 +143,14 @@ class CategoriesController extends Controller
         ]);
     }
 
+    public function restore(Request $request, $id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->restore();
 
+        return redirect()->route('dashboard.categories.trash')
+            ->with('success' , 'Category restored!');
+    }
 
 
 
