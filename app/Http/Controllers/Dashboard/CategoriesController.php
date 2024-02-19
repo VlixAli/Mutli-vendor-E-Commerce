@@ -152,7 +152,18 @@ class CategoriesController extends Controller
             ->with('success' , 'Category restored!');
     }
 
+    public function forceDelete($id)
+    {
+        $category = Category::onlyTrashed()->findOrFail($id);
+        $category->forceDelete();
 
+        if ($category->image) {
+            Storage::disk('public')->delete($category->image);
+        }
+
+        return redirect()->route('dashboard.categories.trash')
+            ->with('success' , 'Category deleted forever!');
+    }
 
     protected function uploadImage(Request $request)
     {
