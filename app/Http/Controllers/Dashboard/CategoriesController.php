@@ -18,7 +18,9 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
 
-        $categories = Category::filter($request->query())->paginate(1)->withQueryString();
+        $categories = Category::filter($request->query())
+            ->orderBy('name')
+            ->paginate(1)->withQueryString();
         return view('dashboard.categories.index', [
             'categories' => $categories
         ]);
@@ -102,7 +104,7 @@ class CategoriesController extends Controller
         $old_image = $category->image;
         $data = $request->except('image');
         $newImage = $this->uploadImage($request);
-        if($newImage){
+        if ($newImage) {
             $data['image'] = $newImage;
         }
 
