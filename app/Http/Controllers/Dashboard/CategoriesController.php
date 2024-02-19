@@ -130,9 +130,9 @@ class CategoriesController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        if ($category->image) {
-            Storage::disk('public')->delete($category->image);
-        }
+//        if ($category->image) {
+//            Storage::disk('public')->delete($category->image);
+//        }
 
         return redirect()->route('dashboard.categories.index')
             ->with('success', 'Category deleted!');
