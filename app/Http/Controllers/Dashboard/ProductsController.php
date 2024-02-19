@@ -48,7 +48,10 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $products = Product::findOrFail($id);
+//        return view('dashboard.products.index' , [
+//            'products' => $products
+//        ]);
     }
 
     /**
