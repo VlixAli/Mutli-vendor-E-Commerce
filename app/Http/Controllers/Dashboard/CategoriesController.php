@@ -81,7 +81,8 @@ class CategoriesController extends Controller
     public function show(Category $category)
     {
         return view('dashboard.categories.show' , [
-            'category' => $category
+            'category' => $category,
+            'products' => $category->products()->with('store')->latest()->paginate(5)
         ]);
     }
 
