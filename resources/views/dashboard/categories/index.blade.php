@@ -45,8 +45,8 @@
         @forelse($categories as $category)
             <tr>
                 <td><img src="{{asset('storage/'.$category->image)}}" alt="" height="50"></td>
-                <td>{{ $category->id }}</td>
-                <td>{{ $category->name }}</td>
+                <td> {{ $category->id }}</td>
+                <td><a href="{{ route('dashboard.categories.show' , $category->id) }}">{{ $category->name }}</a></td>
                 <td>{{ $category->parent->name }}</td>
                 <td>{{ $category->products_count }}</td>
                 <td>{{ $category->status }}</td>
