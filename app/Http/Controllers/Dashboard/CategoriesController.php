@@ -18,14 +18,22 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
 
-        $categories = Category::leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
-            ->select([
-                'categories.*',
-                'parents.name as parent_name'
+        $categories = Category::with('parent')
+//        leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
+//            ->select([
+//                'categories.*',
+//                'parents.name as parent_name'
+//            ])
+//            ->select('categories.*')
+//            ->selectRaw('(select count(*) from products where category_id = categories.id) as products_count')
+            ->withCount([
+                'products as products_count' => function ($query) {
+                    $query->where('status' , '=' , 'active');
+                }
             ])
             ->filter($request->query())
             ->orderBy('categories.name')
-            ->paginate(2)->withQueryString();
+            ->paginate()->withQueryString();
         return view('dashboard.categories.index', [
             'categories' => $categories
         ]);
@@ -148,7 +156,7 @@ class CategoriesController extends Controller
         $category->restore();
 
         return redirect()->route('dashboard.categories.trash')
-            ->with('success' , 'Category restored!');
+            ->with('success', 'Category restored!');
     }
 
     public function forceDelete($id)
@@ -161,7 +169,7 @@ class CategoriesController extends Controller
         }
 
         return redirect()->route('dashboard.categories.trash')
-            ->with('success' , 'Category deleted forever!');
+            ->with('success', 'Category deleted forever!');
     }
 
     protected function uploadImage(Request $request)
