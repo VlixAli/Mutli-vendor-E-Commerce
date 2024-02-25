@@ -53,7 +53,7 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        $tags = implode(',',$product->tags()->pluck('name')->toArray());
+        $tags = implode(',', $product->tags()->pluck('name')->toArray());
         return view('dashboard.products.edit', [
             'product' => $product,
             'categories' => $categories,
@@ -70,10 +70,12 @@ class ProductsController extends Controller
 
         $tags = explode(',', $request->post('tags'));
         $tag_ids = [];
-        foreach ($tags as $t_name) {
 
+        $saved_tags = Tag::all();
+
+        foreach ($tags as $t_name) {
             $slug = Str::slug($t_name);
-            $tag = Tag::where('slug', $slug)->first();
+            $tag = $saved_tags->where('slug', $slug)->first();
             if (!$tag) {
                 $tag = Tag::create([
                     'name' => $t_name,
