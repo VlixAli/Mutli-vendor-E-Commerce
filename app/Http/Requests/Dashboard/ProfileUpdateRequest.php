@@ -27,6 +27,11 @@ class ProfileUpdateRequest extends FormRequest
             'birthday' => ['nullable' , 'date' , 'before:today'],
             'gender' => ['in:male,female'],
             'country' => 'required|string|size:2',
+            'street_address' => 'nullable',
+            'city' => 'nullable',
+            'state' => 'nullable',
+            'postal_code' => 'nullable',
+            'locale' => 'nullable',
         ];
     }
 }
