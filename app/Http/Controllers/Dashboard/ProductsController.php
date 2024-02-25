@@ -53,9 +53,11 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
+        $tags = implode(',',$product->tags()->pluck('name')->toArray());
         return view('dashboard.products.edit', [
             'product' => $product,
-            'categories' => $categories
+            'categories' => $categories,
+            'tags' => $tags
         ]);
     }
 

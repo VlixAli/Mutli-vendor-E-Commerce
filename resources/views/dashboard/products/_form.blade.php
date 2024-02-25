@@ -42,7 +42,7 @@
 </div>
 
 <div class="form-group">
-    <x-form.input label="Tags" name="tags" />
+    <x-form.input label="Tags" name="tags" :value="$tags"/>
 </div>
 
 <div class="form-group">
