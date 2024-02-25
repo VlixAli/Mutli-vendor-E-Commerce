@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class ProductsController extends Controller
 {
@@ -14,9 +16,9 @@ class ProductsController extends Controller
      */
     public function index()
     {
-        $products = Product::with(['category' , 'store'])->paginate();
-        return view('dashboard.products.index' , [
-           'products' => $products
+        $products = Product::with(['category', 'store'])->paginate();
+        return view('dashboard.products.index', [
+            'products' => $products
         ]);
     }
 
@@ -51,7 +53,7 @@ class ProductsController extends Controller
     {
         $product = Product::findOrFail($id);
         $categories = Category::all();
-        return view('dashboard.products.edit' , [
+        return view('dashboard.products.edit', [
             'product' => $product,
             'categories' => $categories
         ]);
@@ -64,8 +66,25 @@ class ProductsController extends Controller
     {
         $product->update($request->except('tags'));
 
+        $tags = explode(',', $request->post('tags'));
+        $tag_ids = [];
+        foreach ($tags as $t_name) {
+
+            $slug = Str::slug($t_name);
+            $tag = Tag::where('slug', $slug)->first();
+            if (!$tag) {
+                $tag = Tag::create([
+                    'name' => $t_name,
+                    'slug' => $slug
+                ]);
+            }
+            $tag_ids[] = $tag->id;
+        }
+
+        $product->tags()->sync($tag_ids);
+
         return redirect()->route('dashboard.products.index')
-            ->with('success' , 'Product updated');
+            ->with('success', 'Product updated');
     }
 
     /**
