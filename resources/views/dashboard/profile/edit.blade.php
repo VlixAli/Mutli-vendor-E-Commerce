@@ -9,6 +9,8 @@
 
 @section('content')
 
+    <x-alert type="success" />
+
     <form action="{{ route('dashboard.profile.update') }}" method="post" enctype="multipart/form-data">
         @csrf
         @method('patch')
