@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -48,18 +49,23 @@ class ProductsController extends Controller
      */
     public function edit(string $id)
     {
-        $products = Product::findOrFail($id);
-//        return view('dashboard.products.index' , [
-//            'products' => $products
-//        ]);
+        $product = Product::findOrFail($id);
+        $categories = Category::all();
+        return view('dashboard.products.edit' , [
+            'product' => $product,
+            'categories' => $categories
+        ]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(Request $request, Product $product)
     {
-        //
+        $product->update($request->except('tags'));
+
+        return redirect()->route('dashboard.products.index')
+            ->with('success' , 'Product updated');
     }
 
     /**
