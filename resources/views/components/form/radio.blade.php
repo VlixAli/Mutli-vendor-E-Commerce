@@ -1,5 +1,5 @@
 @props([
-    'name' , 'options' , 'checked' => false , 'label'
+    'name' , 'options' , 'checked' => false , 'label' => false
 ])
 
 @if($label)
