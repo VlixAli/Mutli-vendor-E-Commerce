@@ -10,15 +10,15 @@
 @endif
 
 <div class="form-group">
-    <x-form.input label="Category Name" name="name" :value="$category->name" />
+    <x-form.input label="Product Name" name="name" :value="$product->name" />
 </div>
 <div class="form-group">
-    <label for="">Category Parent</label>
-    <select name="parent_id" class="form-control form-select">
+    <label for="">Category</label>
+    <select name="category_id" class="form-control form-select">
         <option value="">Primary Category</option>
-        @foreach($parents as $parent)
+        @foreach($categories as $category)
             <option
-                value="{{ $parent->id }}" @selected(old('parent_id',$category->parent_id) == $parent->id)>{{ $parent->name }}</option>
+                value="{{ $category->id }}" @selected(old('category_id',$product->category_id) == $category->id)>{{ $category->name }}</option>
         @endforeach
     </select>
 </div>
@@ -32,10 +32,23 @@
         <img src="{{asset('storage/'.$category->image)}}" alt="" height="50">
     @endif
 </div>
+
+<div class="form-group">
+    <x-form.input label="Price" name="price" :value="$product->price" />
+</div>
+
+<div class="form-group">
+    <x-form.input label="Compare Price" name="compare_price" :value="$product->compare_price" />
+</div>
+
+<div class="form-group">
+    <x-form.input label="Tags" name="tags" />
+</div>
+
 <div class="form-group">
     <label for="">Status</label>
     <div>
-        <x-form.radio name="status" :checked="$category->status" :options="['active' => 'Active' , 'archived' => 'Archived']" />
+        <x-form.radio name="status" :checked="$category->status" :options="['active' => 'Active' , 'draft' => 'Draft' ,'archived' => 'Archived']" />
     </div>
 </div>
 <div class="form-group">
