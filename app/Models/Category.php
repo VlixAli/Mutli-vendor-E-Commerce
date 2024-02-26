@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Str;
 use Illuminate\Validation\Rule;
 
 class Category extends Model
@@ -66,5 +67,17 @@ class Category extends Model
     public function children()
     {
         return $this->hasMany(Category::class, 'parent_id' , 'id');
+    }
+
+    //Accessors
+    public function getImageURlAttribute()
+    {
+        if(!$this->image) {
+            return asset('storage/defaultProductImage.png');
+        }
+        if(Str::startsWith($this->image, ['http://' , 'https://'])){
+            return $this->image;
+        }
+        return asset('storage/' . $this->image);
     }
 }
