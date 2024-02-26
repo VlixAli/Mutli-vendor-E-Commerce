@@ -6,6 +6,7 @@ use App\Models\Scopes\StoreScope;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Product extends Model
 {
@@ -51,5 +52,17 @@ class Product extends Model
             'tag_id',
             'id',
             'id');
+    }
+
+    //Accessors
+    public function getImageURlAttribute()
+    {
+        if(!$this->image) {
+            return asset('storage/defaultProductImage.png');
+        }
+        if(Str::startsWith($this->image, ['http://' , 'https://'])){
+            return $this->image;
+        }
+        return asset('storage/' . $this->image);
     }
 }
