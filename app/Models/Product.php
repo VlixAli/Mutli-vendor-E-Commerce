@@ -65,4 +65,12 @@ class Product extends Model
         }
         return asset('storage/' . $this->image);
     }
+
+    public function getSalePercentAttribute()
+    {
+        if (!$this->compare_price){
+            return null;
+        }
+        return number_format(100 - (100 * $this->price /$this->compare_price));
+    }
 }
