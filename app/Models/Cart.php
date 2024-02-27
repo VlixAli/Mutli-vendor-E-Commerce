@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Observers\CartObserver;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
@@ -20,6 +21,11 @@ class Cart extends Model
     protected static function booted()
     {
         static::observe(CartObserver::class);
+    }
+
+    public function scopeCookieId(Builder $builder, $cookieId)
+    {
+        $builder->where('cookie_id', '=', $cookieId);
     }
 
     public function user()
