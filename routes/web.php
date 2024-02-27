@@ -21,7 +21,7 @@ Route::get('/', [HomeController::class, 'index'])
 
 Route::controller(ProductsController::class)->name('products.')->group(function (){
     Route::get('/products', 'index')->name('index');
-    Route::get('/products/{product}', 'show')->name('show');
+    Route::get('/products/{product:slug}', 'show')->name('show');
 });
 
 require __DIR__ . '/auth.php';
