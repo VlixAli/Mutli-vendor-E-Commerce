@@ -28,6 +28,8 @@ class CartController extends Controller
     {
         $product = Product::findOrFail($request->validated('product_id'));
         $cartRepository->add($product, $request->validated('quantity'));
+
+        return redirect()->route('cart.index')->with('success' , 'Product added to cart!');
     }
 
     /**
