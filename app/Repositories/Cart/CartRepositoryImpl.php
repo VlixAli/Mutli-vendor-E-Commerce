@@ -75,10 +75,11 @@ class CartRepositoryImpl implements CartRepository
 
     public function total(): float
     {
-        return (float) Cart::cookieId($this->getCookieId())
-            ->join('products', 'products.id', '=', 'carts.product_id')
-            ->selectRaw('sum(products.price * carts.quantity) as total')
-            ->value('total');
+//        return (float) Cart::cookieId($this->getCookieId())
+//            ->join('products', 'products.id', '=', 'carts.product_id')
+//            ->selectRaw('sum(products.price * carts.quantity) as total')
+//            ->value('total');
+        return $this->get()->sum(fn($item) => $item->quantity * $item->product->price);
     }
 
     protected function getCookieId()
