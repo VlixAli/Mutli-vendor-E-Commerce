@@ -15,7 +15,9 @@ class CartRepositoryImpl implements CartRepository
 
     public function get(): Collection
     {
-        return Cart::cookieId($this->getCookieId())->get();
+        return Cart::with('product')
+            ->cookieId($this->getCookieId())
+            ->get();
     }
 
     public function add(Product $product, $quantity = 1)
@@ -37,9 +39,9 @@ class CartRepositoryImpl implements CartRepository
             ]);
     }
 
-    public function delete(Product $product)
+    public function delete($id)
     {
-        Cart::where('product_id', '=', $product->id)
+        Cart::where('product_id', '=', $id)
             ->cookieId($this->getCookieId())
             ->delete();
     }
@@ -51,7 +53,7 @@ class CartRepositoryImpl implements CartRepository
 
     public function total(): float
     {
-        return Cart::cookieId($this->getCookieId())
+        return (float) Cart::cookieId($this->getCookieId())
             ->join('products', 'products.id', '=', 'carts.product_id')
             ->selectRaw('sum(products.price * carts.quantity) as total')
             ->value('total');
@@ -60,9 +62,9 @@ class CartRepositoryImpl implements CartRepository
     protected function getCookieId()
     {
         $cookie_id = Cookie::get('cart_id');
-        if(!$cookie_id){
+        if (!$cookie_id) {
             $cookie_id = Str::uuid();
-            Cookie::queue('cart_id' , $cookie_id, Carbon::now()->addDays(30));
+            Cookie::queue('cart_id', $cookie_id, 30 * 24 * 60);
         }
         return $cookie_id;
     }
