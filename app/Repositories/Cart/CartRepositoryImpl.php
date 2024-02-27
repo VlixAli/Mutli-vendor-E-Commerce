@@ -13,11 +13,25 @@ use Illuminate\Support\Str;
 class CartRepositoryImpl implements CartRepository
 {
 
+    protected $items;
+
+    /**
+     * @param $items
+     */
+    public function __construct()
+    {
+        $this->items = collect([]);
+    }
+
+
     public function get(): Collection
     {
-        return Cart::with('product')
-            ->cookieId($this->getCookieId())
-            ->get();
+        if(!$this->items->count()) {
+            $this->items =  Cart::with('product')
+                ->cookieId($this->getCookieId())
+                ->get();
+        }
+        return $this->items;
     }
 
     public function add(Product $product, $quantity = 1)
