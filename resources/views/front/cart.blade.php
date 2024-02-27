@@ -55,11 +55,11 @@
                     <div class="cart-single-list">
                         <div class="row align-items-center">
                             <div class="col-lg-1 col-md-1 col-12">
-                                <a href="{{ route('front.products.show' , $item->product->slug) }}">
+                                <a href="{{ route('products.show' , $item->product->slug) }}">
                                     <img src="{{ $item->product->image_url }}" alt="#"></a>
                             </div>
                             <div class="col-lg-4 col-md-3 col-12">
-                                <h5 class="product-name"><a href="{{ route('front.products.show' , $item->product->slug) }}">
+                                <h5 class="product-name"><a href="{{ route('products.show' , $item->product->slug) }}">
                                         {{ $item->product->name }}</a></h5>
                                 <p class="product-des">
                                     <span><em>Type:</em> Mirrorless</span>
