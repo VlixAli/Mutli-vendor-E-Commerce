@@ -70,7 +70,7 @@ class CartRepositoryImpl implements CartRepository
 
     public function empty()
     {
-        Cart::cookieId($this->getCookieId())->destroy();
+        Cart::cookieId($this->getCookieId())->delete();
     }
 
     public function total(): float
