@@ -1,4 +1,6 @@
 <x-front-layout>
+    <x-alert type="success"/>
+    <x-alert type="info"/>
     <!-- Start Hero Area -->
     <section class="hero-area">
         <div class="container">
