@@ -52,7 +52,7 @@
                 <!-- End Cart List Title -->
                 @foreach($cart->get() as $item)
                     <!-- Cart Single List list -->
-                    <div class="cart-single-list">
+                    <div class="cart-single-list" id="{{ $item->id }}">
                         <div class="row align-items-center">
                             <div class="col-lg-1 col-md-1 col-12">
                                 <a href="{{ route('products.show' , $item->product->slug) }}">
@@ -78,7 +78,7 @@
                                 <p>{{ Currency::format(0) }}</p>
                             </div>
                             <div class="col-lg-1 col-md-2 col-12">
-                                <a class="remove-item" href="javascript:void(0)"><i class="lni lni-close"></i></a>
+                                <a class="remove-item" data-id="{{ $item->id }}" href="javascript:void(0)"><i class="lni lni-close"></i></a>
                             </div>
                         </div>
                     </div>
