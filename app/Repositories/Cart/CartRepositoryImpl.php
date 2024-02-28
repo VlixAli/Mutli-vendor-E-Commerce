@@ -52,9 +52,9 @@ class CartRepositoryImpl implements CartRepository
         return $item->increment('quantity',$quantity);
     }
 
-    public function update(Product $product, $quantity)
+    public function update($id, $quantity)
     {
-        Cart::where('product_id', '=', $product->id)
+        Cart::where('id', '=', $id)
             ->cookieId($this->getCookieId())
             ->update([
                 'quantity' => $quantity,
