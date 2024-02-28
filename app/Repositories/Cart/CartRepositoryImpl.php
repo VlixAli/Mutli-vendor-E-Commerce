@@ -63,7 +63,7 @@ class CartRepositoryImpl implements CartRepository
 
     public function delete($id)
     {
-        Cart::where('product_id', '=', $id)
+        Cart::where('id', '=', $id)
             ->cookieId($this->getCookieId())
             ->delete();
     }
