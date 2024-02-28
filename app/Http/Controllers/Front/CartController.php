@@ -55,5 +55,8 @@ class CartController extends Controller
     public function destroy(string $id)
     {
         $this->cartRepository->delete($id);
+        return [
+            'message' => 'Item deleted!',
+        ];
     }
 }
