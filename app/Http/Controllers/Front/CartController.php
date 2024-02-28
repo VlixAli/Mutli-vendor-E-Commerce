@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Front\Cart\StoreRequest;
+use App\Http\Requests\Front\Cart\UpdateRequest;
 use App\Models\Product;
 use App\Repositories\Cart\CartRepository;
 use App\Repositories\Cart\CartRepositoryImpl;
@@ -43,10 +44,9 @@ class CartController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreRequest $request)
+    public function update(UpdateRequest $request, $id)
     {
-        $product = Product::findOrFail($request->validated('product_id'));
-        $this->cartRepository->update($product, $request->validated('quantity'));
+        $this->cartRepository->update($id, $request->validated('quantity'));
     }
 
     /**
