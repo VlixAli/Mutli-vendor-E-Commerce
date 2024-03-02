@@ -26,8 +26,12 @@ class DeductProductQuantity
     {
         $order = $event->order;
 
-        foreach ($order->products as $product) {
-            $product->decrement('quantity', $product->order_item->quantity);
+        try {
+            foreach ($order->products as $product) {
+                $product->decrement('quantity', $product->order_item->quantity);
+            }
+        } catch (\Throwable $e){
+
         }
     }
 }
