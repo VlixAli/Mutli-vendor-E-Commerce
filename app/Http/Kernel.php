@@ -3,6 +3,7 @@
 namespace App\Http;
 
 use App\Http\Middleware\CheckUserType;
+use App\Http\Middleware\MarkNotificationAsRead;
 use App\Http\Middleware\UpdateUserLastActiveAt;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -39,6 +40,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             UpdateUserLastActiveAt::class,
+            MarkNotificationAsRead::class,
         ],
 
         'api' => [
