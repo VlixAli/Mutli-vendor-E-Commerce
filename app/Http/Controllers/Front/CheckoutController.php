@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Front;
 
 use App\Events\OrderCreated;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Front\Checkout\StoreRequest;
 use App\Models\Order;
 use App\Models\OrderItem;
 use App\Repositories\Cart\CartRepository;
@@ -26,7 +27,7 @@ class CheckoutController extends Controller
         ]);
     }
 
-    public function store(Request $request, CartRepository $cartRepository)
+    public function store(StoreRequest $request, CartRepository $cartRepository)
     {
         $items = $cartRepository->get()->groupBy('product.store_id')->all();
 
