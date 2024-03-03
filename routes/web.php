@@ -33,7 +33,7 @@ Route::controller(CheckoutController::class)->name('checkout')->group(function (
     Route::post('checkout' , 'store');
 });
 
-require __DIR__ . '/auth.php';
+//require __DIR__ . '/auth.php';
 require __DIR__ . '/dashboard.php';
 
 
