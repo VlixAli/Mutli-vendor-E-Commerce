@@ -13,24 +13,55 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name' ,
+        'name',
         'category_id',
         'store_id',
         'description',
         'image',
         'price',
-        'compared_price',
+        'compare_price',
         'status'
+    ];
+
+    protected $hidden = [
+      'created_at' , 'updated_at' , 'deleted_at', 'image'
+    ];
+
+    protected $appends = [
+      'image_url',
     ];
 
     protected static function booted()
     {
         static::addGlobalScope('store', new StoreScope);
+
+        static::creating(fn(Product $product) => $product->slug = Str::slug($product->name));
     }
 
     public function scopeActive(Builder $builder)
     {
-        $builder->where('status', '=' , 'active');
+        $builder->where('status', '=', 'active');
+    }
+
+    public function scopeFilter(Builder $builder, $filters)
+    {
+        $options = array_merge([
+            'store_id' => null,
+            'category_id' => null,
+            'tag_id' => null,
+            'status' => 'active',
+        ], $filters);
+
+        $builder->when($options['status'], fn($builder, $value) => $builder->where('status', $value));
+        $builder->when($options['store_id'], fn($builder, $value) => $builder->where('store_id', $value));
+        $builder->when($options['category_id'], fn($builder, $value) => $builder->where('category_id', $value));
+        $builder->when($options['tag_id'], fn($builder, $value) => $builder->whereExist(function ($query) use ($value) {
+            $query->select(1)
+                ->from('product_tag')
+                ->whereRaw('product_id = products.id')
+                ->where('tags_id', $value);
+        }));
+
     }
 
     public function category()
@@ -57,10 +88,10 @@ class Product extends Model
     //Accessors
     public function getImageURlAttribute()
     {
-        if(!$this->image) {
+        if (!$this->image) {
             return asset('storage/defaultProductImage.png');
         }
-        if(Str::startsWith($this->image, ['http://' , 'https://'])){
+        if (Str::startsWith($this->image, ['http://', 'https://'])) {
             return $this->image;
         }
         return asset('storage/' . $this->image);
@@ -68,9 +99,9 @@ class Product extends Model
 
     public function getSalePercentAttribute()
     {
-        if (!$this->compare_price){
+        if (!$this->compare_price) {
             return null;
         }
-        return number_format(100 - (100 * $this->price /$this->compare_price));
+        return number_format(100 - (100 * $this->price / $this->compare_price));
     }
 }
