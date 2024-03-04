@@ -2,6 +2,7 @@
 
 namespace App\Http;
 
+use App\Http\Middleware\CheckApiToken;
 use App\Http\Middleware\CheckUserType;
 use App\Http\Middleware\MarkNotificationAsRead;
 use App\Http\Middleware\UpdateUserLastActiveAt;
@@ -47,6 +48,7 @@ class Kernel extends HttpKernel
             // \Laravel\Sanctum\Http\Middleware\EnsureFrontendRequestsAreStateful::class,
             \Illuminate\Routing\Middleware\ThrottleRequests::class.':api',
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
+            CheckApiToken::class,
         ],
     ];
 
