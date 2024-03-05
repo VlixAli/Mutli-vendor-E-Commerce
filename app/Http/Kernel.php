@@ -5,6 +5,7 @@ namespace App\Http;
 use App\Http\Middleware\CheckApiToken;
 use App\Http\Middleware\CheckUserType;
 use App\Http\Middleware\MarkNotificationAsRead;
+use App\Http\Middleware\SetApplocale;
 use App\Http\Middleware\UpdateUserLastActiveAt;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
@@ -42,6 +43,7 @@ class Kernel extends HttpKernel
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             UpdateUserLastActiveAt::class,
             MarkNotificationAsRead::class,
+            SetApplocale::class,
         ],
 
         'api' => [
@@ -72,6 +74,12 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         //created middlewares
-        'auth.type' => CheckUserType::class
+        'auth.type' => CheckUserType::class,
+
+        'localize'                => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRoutes::class,
+        'localizationRedirect'    => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationRedirectFilter::class,
+        'localeSessionRedirect'   => \Mcamara\LaravelLocalization\Middleware\LocaleSessionRedirect::class,
+        'localeCookieRedirect'    => \Mcamara\LaravelLocalization\Middleware\LocaleCookieRedirect::class,
+        'localeViewPath'          => \Mcamara\LaravelLocalization\Middleware\LaravelLocalizationViewPath::class,
     ];
 }
