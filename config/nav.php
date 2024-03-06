@@ -8,23 +8,33 @@ return [
         'active' => 'dashboard.dashboard'
     ],
     [
-        'icon' => "far fa-circle nav-icon",
+        'icon' => "bi bi-tags-fill",
         'route' => 'dashboard.categories.index',
         'title' => 'Categories',
         'badge' => 'New',
-        'active' => 'dashboard.categories.*'
+        'active' => 'dashboard.categories.*',
+        'ability' => 'categories.view',
     ],
     [
-        'icon' => "far fa-circle nav-icon",
+        'icon' => "bi bi-box2-fill",
         'route' => 'dashboard.products.index',
         'title' => 'Products',
-        'active' => 'dashboard.products.*'
+        'active' => 'dashboard.products.*',
+        'ability' => 'products.view',
     ],
     [
-        'icon' => "far fa-circle nav-icon",
+        'icon' => "bi bi-receipt",
         'route' => 'dashboard.categories.index',
         'title' => 'Orders',
-        'active' => 'dashboard.orders.*'
+        'active' => 'dashboard.orders.*',
+        'ability' => 'orders.view',
+    ],
+    [
+        'icon' => "bi bi-shield-fill",
+        'route' => 'dashboard.roles.index',
+        'title' => 'Roles',
+        'active' => 'dashboard.roles.*',
+        'ability' => 'roles.view',
     ],
 
 ];
