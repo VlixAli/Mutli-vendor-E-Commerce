@@ -7,6 +7,7 @@ use App\Http\Requests\CategoryRequest;
 use App\Models\Category;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 
@@ -18,6 +19,9 @@ class CategoriesController extends Controller
     public function index(Request $request)
     {
 
+        if (!Gate::allows('categories.view')){
+            abort(403);
+        }
         $categories = Category::with('parent')
 //        leftJoin('categories as parents', 'parents.id', '=', 'categories.parent_id')
 //            ->select([
@@ -44,6 +48,9 @@ class CategoriesController extends Controller
      */
     public function create()
     {
+        if (Gate::denies('categories.create')){
+            abort(403);
+        }
         $parents = Category::all();
         $category = new Category();
         return view('dashboard.categories.create', [
@@ -57,6 +64,8 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
+        Gate::authorize('categories.create');
+
         $request->validate(Category::rules(), [
             'name.required' => 'This field (:attribute) is required',
             'name.unique' => 'this name already exists!'
@@ -80,6 +89,8 @@ class CategoriesController extends Controller
      */
     public function show(Category $category)
     {
+        Gate::authorize('categories.view');
+
         return view('dashboard.categories.show' , [
             'category' => $category,
             'products' => $category->products()->with('store')->latest()->paginate(5)
@@ -91,6 +102,8 @@ class CategoriesController extends Controller
      */
     public function edit(string $id)
     {
+        Gate::authorize('categories.update');
+
         try {
             $category = Category::findOrFail($id);
         } catch (Exception $e) {
@@ -139,6 +152,8 @@ class CategoriesController extends Controller
      */
     public function destroy(Category $category)
     {
+        Gate::authorize('categories.delete');
+
         $category->delete();
 
         return redirect()->route('dashboard.categories.index')
