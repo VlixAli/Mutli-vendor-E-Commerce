@@ -8,6 +8,7 @@ use App\Http\Requests\Dashboard\RoleUpdateRequest;
 use App\Models\Role;
 use App\Models\RoleAbility;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class RolesController extends Controller
 {
@@ -16,6 +17,7 @@ class RolesController extends Controller
      */
     public function index()
     {
+        Gate::authorize('roles.view');
         $roles = Role::paginate();
         return view('dashboard.roles.index', [
             'roles' => $roles
@@ -27,6 +29,7 @@ class RolesController extends Controller
      */
     public function create()
     {
+        Gate::authorize('roles.create');
         return view('dashboard.roles.create', [
             'role' => new Role()
         ]);
@@ -37,6 +40,7 @@ class RolesController extends Controller
      */
     public function store(RoleStoreRequest $request)
     {
+        Gate::authorize('roles.create');
         $role = Role::createWithAbilities($request);
 
         return redirect()
@@ -57,6 +61,7 @@ class RolesController extends Controller
      */
     public function edit(Role $role)
     {
+        Gate::authorize('roles.update');
         $role_abilities = $role->abilities()->pluck('type', 'ability')->toArray();
         return view('dashboard.roles.edit', compact('role' , 'role_abilities'));
     }
@@ -66,6 +71,7 @@ class RolesController extends Controller
      */
     public function update(RoleUpdateRequest $request, Role $role)
     {
+        Gate::authorize('roles.update');
         $role->updateWithAbilities($request);
 
         return redirect()->route('dashboard.roles.index')
@@ -77,6 +83,7 @@ class RolesController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('roles.delete');
         Role::destroy($id);
         return redirect()->route('dashboard.roles.index')
             ->with('success', 'Role deleted successfully');

@@ -8,6 +8,7 @@ use App\Http\Requests\Dashboard\AdminUpdateRequest;
 use App\Models\Admin;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class AdminsController extends Controller
 {
@@ -16,6 +17,7 @@ class AdminsController extends Controller
      */
     public function index()
     {
+        Gate::authorize('admins.view');
         $admins = Admin::paginate();
         return view('dashboard.admins.index', [
             'admins' => $admins
@@ -27,6 +29,7 @@ class AdminsController extends Controller
      */
     public function create()
     {
+        Gate::authorize('admins.create');
         return view('dashboard.admins.create', [
             'roles' => Role::all(),
             'admin' => new Admin()
@@ -38,6 +41,7 @@ class AdminsController extends Controller
      */
     public function store(AdminStoreRequest $request)
     {
+        Gate::authorize('admins.create');
         $admin = Admin::create($request->validated());
         $admin->roles()->attach($request->roles);
 
@@ -59,6 +63,7 @@ class AdminsController extends Controller
      */
     public function edit(Admin $admin)
     {
+        Gate::authorize('admins.update');
         $roles = Role::all();
         $admin_roles = $admin->roles()->pluck('id')->toArray();
 
@@ -70,6 +75,7 @@ class AdminsController extends Controller
      */
     public function update(AdminUpdateRequest $request, Admin $admin)
     {
+        Gate::authorize('admins.update');
         $admin->update($request->validated());
         $admin->roles()->sync($request->roles);
 
@@ -83,6 +89,7 @@ class AdminsController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('admins.delete');
         Admin::destroy($id);
         return redirect()
             ->route('dashboard.admins.index')

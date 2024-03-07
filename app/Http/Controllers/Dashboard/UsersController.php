@@ -8,6 +8,7 @@ use App\Http\Requests\Dashboard\UserUpdateRequest;
 use App\Models\User;
 use App\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Gate;
 
 class UsersController extends Controller
 {
@@ -16,6 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
+        Gate::authorize('users.index');
         $users = User::paginate();
         return view('dashboard.users.index', [
             'users' => $users
@@ -27,6 +29,7 @@ class UsersController extends Controller
      */
     public function create()
     {
+        Gate::authorize('users.create');
         return view('dashboard.users.create', [
             'roles' => Role::all(),
             'user' => new User()
@@ -38,6 +41,7 @@ class UsersController extends Controller
      */
     public function store(UserStoreRequest $request)
     {
+        Gate::authorize('users.create');
         $user = User::create($request->validated());
         $user->roles()->attach($request->roles);
 
@@ -59,6 +63,7 @@ class UsersController extends Controller
      */
     public function edit(User $user)
     {
+        Gate::authorize('users.update');
         $roles = Role::all();
         $user_roles = $user->roles()->pluck('id')->toArray();
 
@@ -70,6 +75,7 @@ class UsersController extends Controller
      */
     public function update(UserUpdateRequest $request, User $user)
     {
+        Gate::authorize('users.update');
         $user->update($request->validated());
         $user->roles()->sync($request->roles);
 
@@ -83,6 +89,7 @@ class UsersController extends Controller
      */
     public function destroy(string $id)
     {
+        Gate::authorize('users.delete');
         User::destroy($id);
         return redirect()
             ->route('dashboard.users.index')
