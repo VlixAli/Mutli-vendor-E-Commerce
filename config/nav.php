@@ -36,5 +36,19 @@ return [
         'active' => 'dashboard.roles.*',
         'ability' => 'roles.view',
     ],
+    [
+        'icon' => "bi bi-people-fill",
+        'route' => 'dashboard.admins.index',
+        'title' => 'Admins',
+        'active' => 'dashboard.admins.*',
+        'ability' => 'admins.view',
+    ],
+    [
+        'icon' => "bi bi-people",
+        'route' => 'dashboard.users.index',
+        'title' => 'Users',
+        'active' => 'dashboard.users.*',
+        'ability' => 'users.view',
+    ],
 
 ];
