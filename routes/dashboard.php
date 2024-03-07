@@ -1,10 +1,12 @@
 <?php
 
+use App\Http\Controllers\Dashboard\AdminsController;
 use App\Http\Controllers\Dashboard\CategoriesController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\ProductsController;
 use App\Http\Controllers\Dashboard\ProfileController;
 use App\Http\Controllers\Dashboard\RolesController;
+use App\Http\Controllers\Dashboard\UsersController;
 use Illuminate\Support\Facades\Route;
 
 Route::group([
@@ -32,6 +34,8 @@ Route::group([
         'products' => ProductsController::class,
         'categories' => CategoriesController::class,
         'roles' => RolesController::class,
+        'admins' => AdminsController::class,
+        'users' => UsersController::class,
     ]);
 });
 
