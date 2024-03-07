@@ -31,5 +31,7 @@ return [
     'roles.create' => 'Create roles',
     'roles.update' => 'Update roles',
     'roles.delete' => 'Delete roles',
+    'roles.restore' => 'Restore roles',
+    'roles.force-delete' => 'Force delete roles',
 
 ];
