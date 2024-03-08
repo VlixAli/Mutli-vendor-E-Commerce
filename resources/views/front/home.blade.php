@@ -11,32 +11,32 @@
                         <div class="hero-slider">
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                 style="background-image: url(https://via.placeholder.com/800x500);">
+                                 style="background-image: url({{ $products[0]->imageUrl }});">
                                 <div class="content">
                                     <h2><span>No restocking fee ($35 savings)</span>
-                                        M75 Sport Watch
+                                        {{ $products[0]->name }}
                                     </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut
-                                        labore dolore magna aliqua.</p>
-                                    <h3><span>Now Only</span> $320.99</h3>
+                                    <p>{{ $products[0]->description }}</p>
+                                    <h3><span>Now Only</span> {{ Currency::format($products[0]->price) }}</h3>
                                     <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <a href="{{ route('products.show', $products[0]->slug) }}" class="btn">Shop
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
                             <!-- End Single Slider -->
                             <!-- Start Single Slider -->
                             <div class="single-slider"
-                                 style="background-image: url(https://via.placeholder.com/800x500);">
+                                 style="background-image: url({{ $products[1]->imageUrl }});">
                                 <div class="content">
                                     <h2><span>Big Sale Offer</span>
-                                        Get the Best Deal on CCTV Camera
+                                        Get the Best Deal on {{ $products[1]->name }}
                                     </h2>
-                                    <p>Lorem ipsum dolor sit amet, consectetur elit, sed do eiusmod tempor incididunt ut
-                                        labore dolore magna aliqua.</p>
-                                    <h3><span>Combo Only:</span> $590.00</h3>
+                                    <p>{{ $products[1]->description }}</p>
+                                    <h3><span>Combo Only:</span> {{ Currency::format($products[1]->price) }}</h3>
                                     <div class="button">
-                                        <a href="product-grids.html" class="btn">Shop Now</a>
+                                        <a href="{{ route('products.show', $products[1]->slug) }}" class="btn">Shop
+                                            Now</a>
                                     </div>
                                 </div>
                             </div>
@@ -50,13 +50,13 @@
                         <div class="col-lg-12 col-md-6 col-12 md-custom-padding">
                             <!-- Start Small Banner -->
                             <div class="hero-small-banner"
-                                 style="background-image: url('https://via.placeholder.com/370x250');">
+                                 style="background-image: url({{ $products[2]->imageUrl }});">
                                 <div class="content">
                                     <h2>
-                                        <span>New line required</span>
-                                        iPhone 12 Pro Max
+                                        <span>New Product</span>
+                                        {{ $products[2]->name }}
                                     </h2>
-                                    <h3>$259.99</h3>
+                                    <h3>{{ Currency::format($products[2]->price) }}</h3>
                                 </div>
                             </div>
                             <!-- End Small Banner -->
@@ -94,108 +94,25 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Category -->
-                    <div class="single-category">
-                        <h3 class="heading">TV & Audios</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img src="https://via.placeholder.com/180x180" alt="#">
+                @for($i =0 ; $i < 6 ; $i++)
+                    <div class="col-lg-4 col-md-6 col-12">
+                        <!-- Start Single Category -->
+                        <div class="single-category">
+                            <h3 class="heading">{{ $categories[$i]->name }}</h3>
+                            <ul>
+                                <li><a href="product-grids.html">Smart Television</a></li>
+                                <li><a href="product-grids.html">QLED TV</a></li>
+                                <li><a href="product-grids.html">Audios</a></li>
+                                <li><a href="product-grids.html">Headphones</a></li>
+                                <li><a href="product-grids.html">View All</a></li>
+                            </ul>
+                            <div class="images">
+                                <img width="200" height="200" src="{{ $categories[$i]->imageUrl }}" alt="#">
+                            </div>
                         </div>
+                        <!-- End Single Category -->
                     </div>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Category -->
-                    <div class="single-category">
-                        <h3 class="heading">Desktop & Laptop</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img src="https://via.placeholder.com/180x180" alt="#">
-                        </div>
-                    </div>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Category -->
-                    <div class="single-category">
-                        <h3 class="heading">Cctv Camera</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img src="https://via.placeholder.com/180x180" alt="#">
-                        </div>
-                    </div>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Category -->
-                    <div class="single-category">
-                        <h3 class="heading">Dslr Camera</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img src="https://via.placeholder.com/180x180" alt="#">
-                        </div>
-                    </div>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Category -->
-                    <div class="single-category">
-                        <h3 class="heading">Smart Phones</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img src="https://via.placeholder.com/180x180" alt="#">
-                        </div>
-                    </div>
-                    <!-- End Single Category -->
-                </div>
-                <div class="col-lg-4 col-md-6 col-12">
-                    <!-- Start Single Category -->
-                    <div class="single-category">
-                        <h3 class="heading">Game Console</h3>
-                        <ul>
-                            <li><a href="product-grids.html">Smart Television</a></li>
-                            <li><a href="product-grids.html">QLED TV</a></li>
-                            <li><a href="product-grids.html">Audios</a></li>
-                            <li><a href="product-grids.html">Headphones</a></li>
-                            <li><a href="product-grids.html">View All</a></li>
-                        </ul>
-                        <div class="images">
-                            <img src="https://via.placeholder.com/180x180" alt="#">
-                        </div>
-                    </div>
-                    <!-- End Single Category -->
-                </div>
+                @endfor
             </div>
         </div>
     </section>
@@ -214,11 +131,11 @@
                 </div>
             </div>
             <div class="row">
-                @foreach($products as $product)
+                @for($i =13 ; $i <21 ; $i++)
                     <div class="col-lg-3 col-md-6 col-12">
-                        <x-product-card :product="$product"/>
+                        <x-product-card :product="$products[$i]"/>
                     </div>
-                @endforeach
+                @endfor
             </div>
         </div>
     </section>
@@ -228,30 +145,19 @@
     <section class="banner section">
         <div class="container">
             <div class="row">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner" style="background-image:url('https://via.placeholder.com/620x340')">
-                        <div class="content">
-                            <h2>Smart Watch 2.0</h2>
-                            <p>Space Gray Aluminum Case with <br>Black/Volt Real Sport Band </p>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">View Details</a>
+                @for($i =3 ; $i <5 ; $i++)
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="single-banner" style="background-image:url({{$products[$i]->imageUrl}})">
+                            <div class="content">
+                                <h2>{{ $products[$i]->name }}</h2>
+                                <p>{{ $products[$i]->description }}</p>
+                                <div class="button">
+                                    <a href="{{ route('products.show', $products[$i]->slug) }}" class="btn">View Details</a>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="single-banner custom-responsive-margin"
-                         style="background-image:url('https://via.placeholder.com/620x340')">
-                        <div class="content">
-                            <h2>Smart Headphone</h2>
-                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
-                                incididunt ut labore.</p>
-                            <div class="button">
-                                <a href="product-grids.html" class="btn">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endfor
             </div>
         </div>
     </section>
@@ -272,109 +178,51 @@
             <div class="row">
                 <div class="col-lg-8 col-md-12 col-12">
                     <div class="row">
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <!-- Start Single Product -->
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <img src="https://via.placeholder.com/335x335" alt="#">
-                                    <div class="button">
-                                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                            Cart</a>
+                        @for($i =5 ; $i <8 ; $i++)
+                            <div class="col-lg-4 col-md-4 col-12">
+                                <!-- Start Single Product -->
+                                <div class="single-product">
+                                    <div class="product-image">
+                                        <img src="{{ $products[$i]->imageURl }}" alt="#">
+                                        <div class="button">
+                                            <a href="{{ route('products.show', $products[$i]->slug) }}" class="btn"><i class="lni lni-cart"></i> Add
+                                                to
+                                                Cart</a>
+                                        </div>
+                                    </div>
+                                    <div class="product-info">
+                                        <span class="category">{{ $products[$i]->category->name }}</span>
+                                        <h4 class="title">
+                                            <a href="{{ route('products.show', $products[$i]->slug) }}">{{ $products[$i]->name }}</a>
+                                        </h4>
+                                        <ul class="review">
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><i class="lni lni-star-filled"></i></li>
+                                            <li><span>5.0 Review(s)</span></li>
+                                        </ul>
+                                        <div class="price">
+                                            <span>{{ Currency::format($products[$i]->price) }}</span>
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="product-info">
-                                    <span class="category">Camera</span>
-                                    <h4 class="title">
-                                        <a href="product-grids.html">WiFi Security Camera</a>
-                                    </h4>
-                                    <ul class="review">
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><span>5.0 Review(s)</span></li>
-                                    </ul>
-                                    <div class="price">
-                                        <span>$399.00</span>
-                                    </div>
-                                </div>
+                                <!-- End Single Product -->
                             </div>
-                            <!-- End Single Product -->
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <!-- Start Single Product -->
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <img src="https://via.placeholder.com/335x335" alt="#">
-                                    <div class="button">
-                                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                            Cart</a>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <span class="category">Laptop</span>
-                                    <h4 class="title">
-                                        <a href="product-grids.html">Apple MacBook Air</a>
-                                    </h4>
-                                    <ul class="review">
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><span>5.0 Review(s)</span></li>
-                                    </ul>
-                                    <div class="price">
-                                        <span>$899.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Product -->
-                        </div>
-                        <div class="col-lg-4 col-md-4 col-12">
-                            <!-- Start Single Product -->
-                            <div class="single-product">
-                                <div class="product-image">
-                                    <img src="https://via.placeholder.com/335x335" alt="#">
-                                    <div class="button">
-                                        <a href="product-details.html" class="btn"><i class="lni lni-cart"></i> Add to
-                                            Cart</a>
-                                    </div>
-                                </div>
-                                <div class="product-info">
-                                    <span class="category">Speaker</span>
-                                    <h4 class="title">
-                                        <a href="product-grids.html">Bluetooth Speaker</a>
-                                    </h4>
-                                    <ul class="review">
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star-filled"></i></li>
-                                        <li><i class="lni lni-star"></i></li>
-                                        <li><span>4.0 Review(s)</span></li>
-                                    </ul>
-                                    <div class="price">
-                                        <span>$70.00</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- End Single Product -->
-                        </div>
+                        @endfor
                     </div>
                     <!-- Start Banner -->
                     <div class="single-banner right"
-                         style="background-image:url('https://via.placeholder.com/730x310');margin-top: 30px;">
+                         style="background-image:url({{ $products[8]->imageURl }});margin-top: 30px;">
                         <div class="content">
-                            <h2>Samsung Notebook 9 </h2>
-                            <p>Lorem ipsum dolor sit amet, <br>eiusmod tempor
-                                incididunt ut labore.</p>
+                            <h2>{{ $products[8]->name }}</h2>
+                            <p>{{ $products[8]->description }}</p>
                             <div class="price">
-                                <span>$590.00</span>
+                                <span>{{ Currency::format($products[8]->price) }}</span>
                             </div>
                             <div class="button">
-                                <a href="product-grids.html" class="btn">Shop Now</a>
+                                <a href="{{ route('products.show', $products[8]->slug) }}" class="btn">Shop Now</a>
                             </div>
                         </div>
                     </div>
@@ -383,11 +231,11 @@
                 <div class="col-lg-4 col-md-12 col-12">
                     <div class="offer-content">
                         <div class="image">
-                            <img src="https://via.placeholder.com/510x600" alt="#">
-                            <span class="sale-tag">-50%</span>
+                            <img src="{{ $products[9]->imageURl }}" alt="#">
+                            <span class="sale-tag">{{ $products[9]->salePercent }}%</span>
                         </div>
                         <div class="text">
-                            <h2><a href="product-grids.html">Bluetooth Headphone</a></h2>
+                            <h2><a href="{{ route('products.show', $products[8]->slug) }}">{{ $products[9]->name }}</a></h2>
                             <ul class="review">
                                 <li><i class="lni lni-star-filled"></i></li>
                                 <li><i class="lni lni-star-filled"></i></li>
@@ -397,11 +245,10 @@
                                 <li><span>5.0 Review(s)</span></li>
                             </ul>
                             <div class="price">
-                                <span>$200.00</span>
-                                <span class="discount-price">$400.00</span>
+                                <span>{{ Currency::format($products[9]->price) }}</span>
+                                <span class="discount-price">{{ Currency::format($products[9]->compare_price) }}</span>
                             </div>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry incididunt ut
-                                eiusmod tempor labores.</p>
+                            <p>{{ $products[9]->description }}</p>
                         </div>
                         <div class="box-head">
                             <div class="box">
