@@ -1,6 +1,6 @@
 <!-- Start Single Product -->
 <div class="single-product">
-    <div class="product-image">
+    <div class="product-image" >
         <img src="{{  $product->image_url }}" alt="#">
         @if($product->sale_percent)
             <span class="sale-tag">-{{$product->sale_percent}}%</span>
