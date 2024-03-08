@@ -1,274 +1,304 @@
 <x-front-layout title="Checkout">
     <x-slot:breadcrumb>
-    <div class="breadcrumbs">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 col-md-6 col-12">
-                    <div class="breadcrumbs-content">
-                        <h1 class="page-title">checkout</h1>
+        <div class="breadcrumbs">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <div class="breadcrumbs-content">
+                            <h1 class="page-title">checkout</h1>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-12">
-                    <ul class="breadcrumb-nav">
-                        <li><a href="{{ route("home") }}"><i class="lni lni-home"></i> Home</a></li>
-                        <li><a href="{{ route("products.index") }}">Shop</a></li>
-                        <li>checkout</li>
-                    </ul>
+                    <div class="col-lg-6 col-md-6 col-12">
+                        <ul class="breadcrumb-nav">
+                            <li><a href="{{ route("home") }}"><i class="lni lni-home"></i> Home</a></li>
+                            <li><a href="{{ route("products.index") }}">Shop</a></li>
+                            <li>checkout</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
     </x-slot:breadcrumb>
 
     <!--====== Checkout Form Steps Part Start ======-->
 
     <section class="checkout-wrapper section">
         <div class="container">
+            @if($errors->any())
+                <div class="alert alert-danger">
+                    <h3>Error Occurred!</h3>
+                    <ul>
+                        <li>{{ 'Some fields are missing!' }}</li>
+                    </ul>
+                </div>
+            @endif
             <div class="row justify-content-center">
                 <div class="col-lg-8">
                     <form method="post" action="{{ route('checkout') }}">
                         @csrf
-                    <div class="checkout-steps-form-style-1">
-                        <ul id="accordionExample">
-                            <li>
-                                <h6 class="title" data-bs-toggle="collapse" data-bs-target="#collapseThree"
-                                    aria-expanded="true" aria-controls="collapseThree">Your Personal Details </h6>
-                                <section class="checkout-steps-form-content collapse show" id="collapseThree"
-                                         aria-labelledby="headingThree" data-bs-parent="#accordionExample">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="single-form form-default">
-                                                <label>User Name</label>
-                                                <div class="row">
-                                                    <div class="col-md-6 form-input form">
-                                                        <x-form.input name="address[billing][first_name]" placeholder="First Name" />
-                                                    </div>
-                                                    <div class="col-md-6 form-input form">
-                                                        <x-form.input name="address[billing][last_name]" placeholder="Last Name" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Email Address</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[billing][email]" placeholder="Email address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Phone Number</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[billing][phone_number]" placeholder="Phone Number" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form form-default">
-                                                <label>Mailing Address</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[billing][street_address]" placeholder="Street Address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>City</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[billing][city]" placeholder="City" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Post Code</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[billing][postal_code]" placeholder="Post Code" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Region/State</label>
-                                                <div class="select-items">
-                                                    <x-form.input name="address[billing][state]" placeholder="State" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Country</label>
-                                                <div class="form-input form">
-                                                    <x-form.select name="address[billing][country]" :options="$countries" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-checkbox checkbox-style-3">
-                                                <input type="checkbox" id="checkbox-3">
-                                                <label for="checkbox-3"><span></span></label>
-                                                <p>My delivery and mailing addresses are the same.</p>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form button">
-                                                <button class="btn" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseFour" aria-expanded="false"
-                                                        aria-controls="collapseFour">next
-                                                    step</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </section>
-                            </li>
-                            <li>
-                                <h6 class="title collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour"
-                                    aria-expanded="false" aria-controls="collapseFour">Shipping Address</h6>
-                                <section class="checkout-steps-form-content collapse" id="collapseFour"
-                                         aria-labelledby="headingFour" data-bs-parent="#accordionExample">
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="single-form form-default">
-                                                <label>User Name</label>
-                                                <div class="row">
-                                                    <div class="col-md-6 form-input form">
-                                                        <x-form.input name="address[shipping][first_name]" placeholder="First Name" />
-                                                    </div>
-                                                    <div class="col-md-6 form-input form">
-                                                        <x-form.input name="address[shipping][last_name]" placeholder="Last Name" />
+                        <div class="checkout-steps-form-style-1">
+                            <ul id="accordionExample">
+                                <li>
+                                    <h6 class="title" data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                                        aria-expanded="true" aria-controls="collapseThree">Your Personal Details </h6>
+                                    <section class="checkout-steps-form-content collapse show" id="collapseThree"
+                                             aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="single-form form-default">
+                                                    <label>User Name</label>
+                                                    <div class="row">
+                                                        <div class="col-md-6 form-input form">
+                                                            <x-form.input name="address[billing][first_name]"
+                                                                          placeholder="First Name"/>
+                                                        </div>
+                                                        <div class="col-md-6 form-input form">
+                                                            <x-form.input name="address[billing][last_name]"
+                                                                          placeholder="Last Name"/>
+                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Email Address</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[shipping][email]" placeholder="Email address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Phone Number</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[shipping][phone_number]" placeholder="Phone Number" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="single-form form-default">
-                                                <label>Mailing Address</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[shipping][street_address]" placeholder="Street Address" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>City</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[shipping][city]" placeholder="City" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Post Code</label>
-                                                <div class="form-input form">
-                                                    <x-form.input name="address[shipping][postal_code]" placeholder="Post Code" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Region/State</label>
-                                                <div class="select-items">
-                                                    <x-form.input name="address[shipping][state]" placeholder="State" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="single-form form-default">
-                                                <label>Country</label>
-                                                <div class="form-input form">
-                                                    <x-form.select name="address[shipping][country]" :options="$countries" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="checkout-payment-option">
-                                                <h6 class="heading-6 font-weight-400 payment-title">Select Delivery
-                                                    Option</h6>
-                                                <div class="payment-option-wrapper">
-                                                    <div class="single-payment-option">
-                                                        <input type="radio" name="shipping" checked id="shipping-1">
-                                                        <label for="shipping-1">
-                                                            <img src="https://via.placeholder.com/60x32"
-                                                                 alt="Sipping">
-                                                            <p>Standerd Shipping</p>
-                                                            <span class="price">$10.50</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="single-payment-option">
-                                                        <input type="radio" name="shipping" id="shipping-2">
-                                                        <label for="shipping-2">
-                                                            <img src="https://via.placeholder.com/60x32"
-                                                                 alt="Sipping">
-                                                            <p>Standerd Shipping</p>
-                                                            <span class="price">$10.50</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="single-payment-option">
-                                                        <input type="radio" name="shipping" id="shipping-3">
-                                                        <label for="shipping-3">
-                                                            <img src="https://via.placeholder.com/60x32"
-                                                                 alt="Sipping">
-                                                            <p>Standerd Shipping</p>
-                                                            <span class="price">$10.50</span>
-                                                        </label>
-                                                    </div>
-                                                    <div class="single-payment-option">
-                                                        <input type="radio" name="shipping" id="shipping-4">
-                                                        <label for="shipping-4">
-                                                            <img src="https://via.placeholder.com/60x32"
-                                                                 alt="Sipping">
-                                                            <p>Standerd Shipping</p>
-                                                            <span class="price">$10.50</span>
-                                                        </label>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Email Address</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[billing][email]"
+                                                                      placeholder="Email address"/>
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="steps-form-btn button">
-                                                <button class="btn" data-bs-toggle="collapse"
-                                                        data-bs-target="#collapseThree" aria-expanded="false"
-                                                        aria-controls="collapseThree">previous</button>
-                                                <a href="javascript:void(0)" class="btn btn-alt">Save & Continue</a>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Phone Number</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[billing][phone_number]"
+                                                                      placeholder="Phone Number"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-form form-default">
+                                                    <label>Mailing Address</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[billing][street_address]"
+                                                                      placeholder="Street Address"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>City</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[billing][city]" placeholder="City"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Post Code</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[billing][postal_code]"
+                                                                      placeholder="Post Code"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Region/State</label>
+                                                    <div class="select-items">
+                                                        <x-form.input name="address[billing][state]"
+                                                                      placeholder="State"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Country</label>
+                                                    <div class="form-input form">
+                                                        <x-form.select name="address[billing][country]"
+                                                                       :options="$countries"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-checkbox checkbox-style-3">
+                                                    <input type="checkbox" id="checkbox-3">
+                                                    <label for="checkbox-3"><span></span></label>
+                                                    <p>My delivery and mailing addresses are the same.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-form button">
+                                                    <button class="btn" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseFour" aria-expanded="false"
+                                                            aria-controls="collapseFour" type="button">next
+                                                        step
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
-                            </li>
-                            <li>
-                                <h6 class="title collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefive"
-                                    aria-expanded="false" aria-controls="collapsefive">Payment Info</h6>
-                                <section class="checkout-steps-form-content collapse" id="collapsefive"
-                                         aria-labelledby="headingFive" data-bs-parent="#accordionExample">
-                                    <div class="row">
-                                        <div class="col-12">
-                                            <div class="single-form form-default button">
-                                                <button type="submit" class="btn">pay now</button>
+                                    </section>
+                                </li>
+                                <li>
+                                    <h6 class="title collapsed" data-bs-toggle="collapse" data-bs-target="#collapseFour"
+                                        aria-expanded="false" aria-controls="collapseFour">Shipping Address</h6>
+                                    <section class="checkout-steps-form-content collapse" id="collapseFour"
+                                             aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                <div class="single-form form-default">
+                                                    <label>User Name</label>
+                                                    <div class="row">
+                                                        <div class="col-md-6 form-input form">
+                                                            <x-form.input name="address[shipping][first_name]"
+                                                                          placeholder="First Name"/>
+                                                        </div>
+                                                        <div class="col-md-6 form-input form">
+                                                            <x-form.input name="address[shipping][last_name]"
+                                                                          placeholder="Last Name"/>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Email Address</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[shipping][email]"
+                                                                      placeholder="Email address"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Phone Number</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[shipping][phone_number]"
+                                                                      placeholder="Phone Number"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="single-form form-default">
+                                                    <label>Mailing Address</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[shipping][street_address]"
+                                                                      placeholder="Street Address"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>City</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[shipping][city]"
+                                                                      placeholder="City"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Post Code</label>
+                                                    <div class="form-input form">
+                                                        <x-form.input name="address[shipping][postal_code]"
+                                                                      placeholder="Post Code"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Region/State</label>
+                                                    <div class="select-items">
+                                                        <x-form.input name="address[shipping][state]"
+                                                                      placeholder="State"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="single-form form-default">
+                                                    <label>Country</label>
+                                                    <div class="form-input form">
+                                                        <x-form.select name="address[shipping][country]"
+                                                                       :options="$countries"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="checkout-payment-option">
+                                                    <h6 class="heading-6 font-weight-400 payment-title">Select Delivery
+                                                        Option</h6>
+                                                    <div class="payment-option-wrapper">
+                                                        <div class="single-payment-option">
+                                                            <input type="radio" name="shipping" checked id="shipping-1">
+                                                            <label for="shipping-1">
+                                                                <img src="https://via.placeholder.com/60x32"
+                                                                     alt="Sipping">
+                                                                <p>Standerd Shipping</p>
+                                                                <span class="price">$10.50</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="single-payment-option">
+                                                            <input type="radio" name="shipping" id="shipping-2">
+                                                            <label for="shipping-2">
+                                                                <img src="https://via.placeholder.com/60x32"
+                                                                     alt="Sipping">
+                                                                <p>Standerd Shipping</p>
+                                                                <span class="price">$10.50</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="single-payment-option">
+                                                            <input type="radio" name="shipping" id="shipping-3">
+                                                            <label for="shipping-3">
+                                                                <img src="https://via.placeholder.com/60x32"
+                                                                     alt="Sipping">
+                                                                <p>Standerd Shipping</p>
+                                                                <span class="price">$10.50</span>
+                                                            </label>
+                                                        </div>
+                                                        <div class="single-payment-option">
+                                                            <input type="radio" name="shipping" id="shipping-4">
+                                                            <label for="shipping-4">
+                                                                <img src="https://via.placeholder.com/60x32"
+                                                                     alt="Sipping">
+                                                                <p>Standerd Shipping</p>
+                                                                <span class="price">$10.50</span>
+                                                            </label>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-12">
+                                                <div class="steps-form-btn button">
+                                                    <button class="btn" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapseThree" aria-expanded="false"
+                                                            aria-controls="collapseThree" type="button">previous
+                                                    </button>
+                                                    <button class="btn" data-bs-toggle="collapse"
+                                                            data-bs-target="#collapsefive" aria-expanded="false"
+                                                            aria-controls="collapsefive" type="button">Save & Continue
+                                                    </button>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </section>
-                            </li>
-                        </ul>
-                    </div>
+                                    </section>
+                                </li>
+                                <li>
+                                    <h6 class="title collapsed" data-bs-toggle="collapse" data-bs-target="#collapsefive"
+                                        aria-expanded="false" aria-controls="collapsefive">Payment Info</h6>
+                                    <section class="checkout-steps-form-content collapse" id="collapsefive"
+                                             aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                        <div class="row">
+                                            <div class="col-12">
+                                                <div class="single-form form-default button">
+                                                    <button type="submit" class="btn">pay now</button>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </section>
+                                </li>
+                            </ul>
+                        </div>
                     </form>
                 </div>
                 <div class="col-lg-4">
@@ -281,7 +311,7 @@
                                         <input type="text" placeholder="Coupon Code">
                                     </div>
                                     <div class="button">
-                                        <button class="btn">apply</button>
+                                        <button type="button" class="btn">apply</button>
                                     </div>
                                 </div>
                             </form>
@@ -291,32 +321,37 @@
 
                             <div class="sub-total-price">
                                 <div class="total-price">
-                                    <p class="value">Subotal Price:</p>
+                                    <p class="value">Price:</p>
                                     <p class="price">{{ Currency::format($cartRepository->total()) }}</p>
                                 </div>
                                 <div class="total-price shipping">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$10.50</p>
+                                    <p class="value">Taxes :</p>
+                                    <p class="price">{{ Currency::format(2.5) }}</p>
                                 </div>
                                 <div class="total-price discount">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">$10.00</p>
+                                    <p class="value">Tips :</p>
+                                    <p class="price">{{ Currency::format(1) }}</p>
                                 </div>
                             </div>
 
                             <div class="total-payable">
                                 <div class="payable-price">
-                                    <p class="value">Subotal Price:</p>
-                                    <p class="price">{{ Currency::format($cartRepository->total()) }}</p>
+                                    <p class="value">Total Price:</p>
+                                    <p class="price">{{ Currency::format($cartRepository->total() + 3.5) }}</p>
                                 </div>
                             </div>
                             <div class="price-table-btn button">
-                                <a href="javascript:void(0)" class="btn btn-alt">Checkout</a>
+                                <button class="btn btn-alt" data-bs-toggle="collapse"
+                                        data-bs-target="#collapsefive" aria-expanded="false"
+                                        aria-controls="collapsefive" type="button">Checkout
+                                </button>
                             </div>
                         </div>
                         <div class="checkout-sidebar-banner mt-30">
-                            <a href="product-grids.html">
-                                <img src="https://via.placeholder.com/400x330" alt="#">
+                            <a href="{{ route('cart.index') }}">
+                                <img
+                                    src="https://cdn.shopify.com/app-store/listing_images/2b9bba2ab61edabc6d836f14f9377671/icon/CL-Lhc30lu8CEAE=.png"
+                                    alt="#">
                             </a>
                         </div>
                     </div>
