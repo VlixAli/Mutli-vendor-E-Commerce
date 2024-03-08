@@ -68,6 +68,6 @@ class CheckoutController extends Controller
             throw $e;
         }
 
-        return redirect()->route('home')->with('success' , 'Order created!');
+        return redirect()->route('orders.payments.create', $order->id);
     }
 }
