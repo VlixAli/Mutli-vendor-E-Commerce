@@ -88,9 +88,9 @@
                 <div class="col-lg-4 col-md-4 col-12">
                     <div class="top-middle">
                         <ul class="useful-links">
-                            <li><a href="index.html">{{ trans('Home') }}</a></li>
-                            <li><a href="about-us.html">@lang('About Us')</a></li>
-                            <li><a href="contact.html">{{ __('Contact Us') }}</a></li>
+                            <li><a href="{{route('home')}}">{{ trans('Home') }}</a></li>
+                            <li><a href="#">@lang('About Us')</a></li>
+                            <li><a href="#">{{ __('Contact Us') }}</a></li>
                         </ul>
                     </div>
                 </div>
@@ -132,7 +132,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-3 col-md-3 col-7">
                     <!-- Start Header Logo -->
-                    <a class="navbar-brand" href="index.html">
+                    <a class="navbar-brand" href="{{route('home')}}">
                         <img src="{{ asset("assets/images/logo/logo.svg") }}" alt="Logo">
                     </a>
                     <!-- End Header Logo -->
@@ -197,31 +197,9 @@
                     <div class="mega-category-menu">
                         <span class="cat-button"><i class="lni lni-menu"></i>All Categories</span>
                         <ul class="sub-category">
-                            <li><a href="product-grids.html">Electronics <i class="lni lni-chevron-right"></i></a>
-                                <ul class="inner-sub-category">
-                                    <li><a href="product-grids.html">Digital Cameras</a></li>
-                                    <li><a href="product-grids.html">Camcorders</a></li>
-                                    <li><a href="product-grids.html">Camera Drones</a></li>
-                                    <li><a href="product-grids.html">Smart Watches</a></li>
-                                    <li><a href="product-grids.html">Headphones</a></li>
-                                    <li><a href="product-grids.html">MP3 Players</a></li>
-                                    <li><a href="product-grids.html">Microphones</a></li>
-                                    <li><a href="product-grids.html">Chargers</a></li>
-                                    <li><a href="product-grids.html">Batteries</a></li>
-                                    <li><a href="product-grids.html">Cables & Adapters</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="product-grids.html">accessories</a></li>
-                            <li><a href="product-grids.html">Televisions</a></li>
-                            <li><a href="product-grids.html">best selling</a></li>
-                            <li><a href="product-grids.html">top 100 offer</a></li>
-                            <li><a href="product-grids.html">sunglass</a></li>
-                            <li><a href="product-grids.html">watch</a></li>
-                            <li><a href="product-grids.html">man’s product</a></li>
-                            <li><a href="product-grids.html">Home Audio & Theater</a></li>
-                            <li><a href="product-grids.html">Computers & Tablets </a></li>
-                            <li><a href="product-grids.html">Video Games </a></li>
-                            <li><a href="product-grids.html">Home Appliances </a></li>
+                            @foreach($categories as $category)
+                                <li><a href="#">{{ $category->name }}</a></li>
+                            @endforeach
                         </ul>
                     </div>
                     <!-- End Mega Category Menu -->
@@ -237,7 +215,7 @@
                         <div class="collapse navbar-collapse sub-menu-bar" id="navbarSupportedContent">
                             <ul id="nav" class="navbar-nav ms-auto">
                                 <li class="nav-item">
-                                    <a href="index.html" aria-label="Toggle navigation">Home</a>
+                                    <a href="{{route('home')}}" aria-label="Toggle navigation">Home</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="dd-menu active collapsed" href="javascript:void(0)"
@@ -249,8 +227,6 @@
                                         <li class="nav-item"><a href="faq.html">Faq</a></li>
                                         <li class="nav-item active"><a href="login.html">Login</a></li>
                                         <li class="nav-item"><a href="register.html">Register</a></li>
-                                        <li class="nav-item"><a href="mail-success.html">Mail Success</a></li>
-                                        <li class="nav-item"><a href="404.html">404 Error</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item">
@@ -258,11 +234,9 @@
                                        data-bs-target="#submenu-1-3" aria-controls="navbarSupportedContent"
                                        aria-expanded="false" aria-label="Toggle navigation">Shop</a>
                                     <ul class="sub-menu collapse" id="submenu-1-3">
-                                        <li class="nav-item"><a href="product-grids.html">Shop Grid</a></li>
-                                        <li class="nav-item"><a href="product-list.html">Shop List</a></li>
-                                        <li class="nav-item"><a href="product-details.html">shop Single</a></li>
-                                        <li class="nav-item"><a href="cart.html">Cart</a></li>
-                                        <li class="nav-item"><a href="checkout.html">Checkout</a></li>
+                                        @foreach($stores as $store)
+                                            <li><a href="product-grids.html">{{ $store->name }}</a></li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <li class="nav-item">
