@@ -57,13 +57,13 @@
                                             </option>
                                             <option value="EUR" @selected('EUR' == session('currency_code'))>€ EURO
                                             </option>
-                                            <option value="ILS" @selected('ILS' == session('currency_code'))>$ ILS
+                                            <option value="EGP" @selected('EGP' == session('currency_code'))>E£ EGP
                                             </option>
                                             <option value="JOD" @selected('JOD' == session('currency_code'))>₹ JOD
                                             </option>
-                                            <option value="SAR" @selected('SAR' == session('currency_code'))>¥ SAR
+                                            <option value="SAR" @selected('SAR' == session('currency_code'))>﷼ SAR
                                             </option>
-                                            <option value="QAR" @selected('QAR' == session('currency_code'))>৳ QAR
+                                            <option value="TRY" @selected('TRY' == session('currency_code'))>₺ TRY
                                             </option>
                                         </select>
                                     </form>
