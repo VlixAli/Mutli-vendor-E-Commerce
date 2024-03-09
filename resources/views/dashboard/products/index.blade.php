@@ -44,7 +44,7 @@
         <tbody>
         @forelse($products as $product)
             <tr>
-                <td><img src="{{$product->image}}" alt="" height="50"></td>
+                <td><img src="{{$product->image_url}}" alt="" height="50"></td>
                 <td>{{ $product->id }}</td>
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->category->name }}</td>
