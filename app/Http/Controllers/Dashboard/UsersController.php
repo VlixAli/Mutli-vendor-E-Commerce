@@ -17,7 +17,7 @@ class UsersController extends Controller
      */
     public function index()
     {
-        Gate::authorize('users.index');
+        Gate::authorize('users.view');
         $users = User::paginate();
         return view('dashboard.users.index', [
             'users' => $users
