@@ -19,11 +19,11 @@ class AdminFactory extends Factory
     {
         return [
             'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'email' => 'AdminEmail@example.com',
             'username' => $this->faker->unique()->userName,
             'password' => Hash::make('password'),
             'phone_number' => $this->faker->phoneNumber,
-            'super_admin' => $this->faker->boolean,
+            'super_admin' => true,
         ];
     }
 }
