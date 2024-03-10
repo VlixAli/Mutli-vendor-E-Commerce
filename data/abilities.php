@@ -4,7 +4,7 @@ return [
 
     'categories.view' => 'View categories',
     'categories.create' => 'Create categories',
-    'categories.update' => 'View categories',
+    'categories.update' => 'Update categories',
     'categories.delete' => 'Delete categories',
 
     'products.view' => 'View products',
