@@ -104,7 +104,7 @@
                             <ul class="user-login">
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout').submit()">Sign Out</a>
+                                    document.getElementById('logout').submit()">@lang('Sign Out')</a>
                                 </li>
                                 <form action="{{ route('logout') }}" id="logout" method="post" style="display: none">
                                     @csrf
