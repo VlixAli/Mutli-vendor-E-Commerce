@@ -48,21 +48,28 @@ Route::group([
     Route::post('currency', [CurrencyConverterController::class, 'store'])
         ->name('currency.store');
 
-    Route::get('auth/{provider}/redirect', [SocialLoginController::class, 'redirect'])
-        ->name('auth.socialite.redirect');
-    Route::get('auth/{provider}/callback', [SocialLoginController::class, 'callback'])
-        ->name('auth.socialite.callback');
+    Route::prefix('auth/{provider}')->group(function () {
+        Route::controller(SocialLoginController::class)
+            ->as('auth.socialite.')
+            ->group(function () {
+                Route::get('/redirect', 'redirect')->name('redirect');
+                Route::get('/callback', 'callback')->name('callback');
+            });
+        Route::get('/user', [SocialController::class, 'index']);
+    });
 
-    Route::get('auth/{provider}/user', [SocialController::class, 'index']);
 
-    Route::get('orders/{order}/pay', [PaymentsController::class, 'create'])
-        ->name('orders.payments.create');
+    Route::controller(PaymentsController::class)
+        ->prefix('orders/{order}')->group(function () {
+            Route::get('/pay', 'create')
+                ->name('orders.payments.create');
 
-    Route::post('orders/{order}/stripe/payment-intent', [PaymentsController::class , 'createStripePaymentIntent'])
-        ->name('stripe.paymentIntent.create');
+            Route::post('/stripe/payment-intent', 'createStripePaymentIntent')
+                ->name('stripe.paymentIntent.create');
 
-    Route::get('orders/{order}/pay/stripe/callback', [PaymentsController::class, 'confirm'])
-        ->name('stripe.return');
+            Route::get('/pay/stripe/callback', 'confirm')
+                ->name('stripe.return');
+        });
 });
 
 
