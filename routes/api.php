@@ -22,12 +22,14 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::apiResource('/products', ProductsController::class);
 
-Route::post('auth/access-tokens', [AccessTokensController::class, 'store'])
-    ->middleware('guest:sanctum');
 Route::controller(AccessTokensController::class)
     ->prefix('auth/access-tokens')
-    ->middleware('auth:sanctum')
     ->group(function () {
-        Route::delete('/deleteTokens', 'destroyAll');
-        Route::delete('/{token?}', 'destroy');
+        Route::post('/', 'store')
+            ->middleware('guest:sanctum');
+
+        Route::middleware('auth:sanctum')->group(function () {
+            Route::delete('/deleteTokens', 'destroyAll');
+            Route::delete('/{token?}', 'destroy');
+        });
     });
