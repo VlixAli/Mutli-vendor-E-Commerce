@@ -110,6 +110,7 @@ if you want to test the email notification feature you can add your email creden
 
 ### Design Patterns used :
 - Repository Design Pattern
+- Service Design Pattern
 - MVC Design Pattern
 
 ## 🎉 Acknowledgements <a name = "acknowledgements"></a>
