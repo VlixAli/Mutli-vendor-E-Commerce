@@ -13,8 +13,10 @@
 - [Features](#features).
 - [Requirements](#requirements).
 - [Installation Steps](#installation).
+- [Api documentation](#api).
 - [concepts and patterns used](#concepts).
 - [Acknowledgements](#acknowledgements).
+- [Screenshots](#screens).
 
 
 ## ⛏️ Built Using <a name = "built"></a>
@@ -86,6 +88,12 @@ if you want to test the email notification feature you can add your email creden
 - email : AdminEmail@example.com
 - password : password
 
+## ✍️ Api documentation <a name = "api"></a>
+
+---
+For how to use the products api and create access token view this link
+[Mutli-Vendor E-Commerce](https://documenter.getpostman.com/view/23171948/2sA2xiVrUe)
+
 ## 🎈 concepts and patterns used <a name = "concepts"></a>
 
 ---
@@ -118,5 +126,32 @@ if you want to test the email notification feature you can add your email creden
 ---
 That project was created with the help of this amazing tutorial [PHP Laravel 9 Course: Multi-Vendor Store Example](https://youtube.com/playlist?list=PL13Ag2mfco64zMLcFjPb5GVWCu-OAjTrx&si=sziOsFlBgOMOU8no)
 on youtube (In Arabic).
+
+## 📷 Screenshots <a name = "screens"></a>
+
+---
+
+### Home page 
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/home%20page.PNG?raw=true"/>
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/home%20page2.PNG?raw=true"/>
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/home%20page%203.PNG?raw=true"/>
+
+### Cart
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/cart%20page.PNG?raw=true"/>
+
+### Checkout
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/checkout%20page.PNG?raw=true"/>
+
+### Payment
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/payment%20page.PNG?raw=true"/>
+
+### Login
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/login.PNG?raw=true"/>
+
+### Registration
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/registration.PNG?raw=true"/>
+
+### Admin dashboard
+<img src="https://github.com/VlixAli/Mutli-vendor-E-Commerce-using-laravel/blob/main/screenshots/admin%20dashboard%20page.PNG?raw=true"/>
 
 
