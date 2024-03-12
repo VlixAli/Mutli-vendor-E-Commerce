@@ -53,6 +53,7 @@
 - Laravel => 10
 - composer
 - MySQL
+- NodeJs
 
 ## 🚀 Installation Steps <a name = "installation"></a>
 
@@ -119,6 +120,7 @@ For how to use the products api and create access token view this link
 ### Design Patterns used :
 - Repository Design Pattern
 - Service Design Pattern
+- Dependency Injection
 - MVC Design Pattern
 
 ## 🎉 Acknowledgements <a name = "acknowledgements"></a>
