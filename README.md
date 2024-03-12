@@ -34,6 +34,7 @@
 - Login and Registration for users
 - Login for admins
 - 2 Factor Authentication for users
+- api for products and for authentication using sanctum
 - translating the header navbar 
 - changing the currency
 - adding products to the shopping cart
