@@ -117,6 +117,7 @@ For how to use the products api and create access token view this link
 - Model Factory and Database seeders
 - adding lang file to translate the website
 - blade template engine
+- blade components
 
 ### Design Patterns used :
 - Repository Design Pattern
