@@ -71,7 +71,8 @@ add your Database credentials to your .env file and run this command to generate
 
 ```
 php artisan key:generate
-php artisan migrate
+php artisan migrate --seed
+php artisan storage:link
 ```
 
 run the project using the following command
