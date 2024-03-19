@@ -123,6 +123,7 @@ For how to use the products api and create access token view this link
 ### Design Patterns used :
 - Repository Design Pattern
 - Service Design Pattern
+- Observer Design Pattern
 - Dependency Injection
 - MVC Design Pattern
 
